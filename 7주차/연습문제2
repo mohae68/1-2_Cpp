@@ -1,0 +1,259 @@
+//문제1
+#include <iostream>
+using namespace std;
+
+//클래스 선언부
+class Triangle {
+private:
+public:
+	int width, height;//멤버 변수
+	int getArea();//멤버 함수
+	Triangle();//디폴트 생성자
+	Triangle(int a, int b);//오버로딩 생성자
+};
+//구현부
+Triangle::Triangle() {
+	width = 1;
+	height = 1;
+	cout << "너비는 " << width << " 높이는 " << height << "이 생성됐다." << endl;
+}
+Triangle::Triangle(int a, int b) {
+	width = a;
+	height = b;
+	cout<< "너비는 " << width << " 높이는 " << height << "이 생성됐다." << endl;
+}
+int Triangle::getArea() {
+	return width * height / 2;
+}
+
+//main()
+int main()
+{
+	Triangle Tri1; //객체 생성
+	int area = Tri1.getArea();
+	cout << "삼각형A의 면적은 " << area << endl;
+
+	Triangle Tri2(5, 2); //객체2 생성
+	area = Tri2.getArea();
+	cout << "삼각형B의 면적은 " << area;
+
+	return 0;
+	
+}
+
+//문제2
+#include "Circle.h"
+#include <iostream>
+using namespace std;
+
+int main() {
+	Circle* pC = new Circle[3];
+
+	pC->SetRadius(10);
+	(pC + 1)->SetRadius(20);
+	(pC + 2)->SetRadius(30);
+
+	for (int i = 0; i < 3; i++) {
+		cout << (pC + i)->getArea() << endl;
+	}
+
+	for (int i = 0; i < 3; i++) {
+		cout << (*pC).getArea() << endl;
+		pC++;
+	}
+
+	delete[] pC;
+
+	return 0;
+}
+
+//문제3
+#include "Circle.h"
+#include <iostream>
+using namespace std;
+
+int main() {
+	int n, r;
+	cout << "생성하고자 하는 원의 개수?";
+	cin >> n;//원 개수 입력받음
+
+	Circle* pArray = new Circle[n]; //delete 꼭 해주기
+
+	for (int i = 0; i < n; i++) {
+		cout << "원" << i + 1 << ":";
+		cin >> r;//반지름 입력받음
+		(pArray + i)->SetRadius(r);
+	}
+	int count = 0;//카운트변수
+
+	Circle* p = pArray;
+
+	for (int i = 0; i < n; i++) {
+		cout << p->getArea() << " ";
+		if ((p[i].getArea() >= 100) && (p[i].getArea() <= 200)) {
+			count++;
+		}
+		p++;
+	}
+	cout << endl;
+	cout << "면적이 100에서 200사이인 원의 개수는 " << count;
+
+	delete [] pArray;
+	return 0;
+}
+
+//문제4
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+int main() {
+	char A[10];
+	char B[10];
+
+	cout << "가위 바위 보 게임을 합니다. 가위, 바위, 보 중에서 입력하세요." << endl;
+
+	cout << "A: "; 
+	cin >> A;//A 입력
+	cout << "B: ";
+	cin >> B;//B 입력
+
+	//답이 틀렸을 경우
+	if ((strcmp(A, "가위") != 0) && (strcmp(A, "바위")) != 0 && (strcmp(A, "보") != 0)) {
+		cout << "A의 값이 틀렸습니다.";
+		return 0;
+	}
+	if ((strcmp(B, "가위") != 0) && (strcmp(B, "바위") != 0) && (strcmp(B, "보") != 0)) {
+		cout << "B의 값이 틀렸습니다.";
+		return 0;
+	}
+	//승부 결정
+	if ((strcmp(A, "가위") == 0) && strcmp(B, "보") == 0)
+		cout << "A가 이겼습니다.";
+	else if ((strcmp(A, "바위") == 0) && (strcmp(B, "가위") == 0))
+		cout << "A가 이겼습니다.";
+	else if ((strcmp(A, "보") == 0) && (strcmp(B, "바위") == 0))
+		cout << "A가 이겼습니다.";
+	else if ((strcmp(B, "가위") == 0) && (strcmp(A, "보") == 0))
+		cout << "B가 이겼습니다.";
+	else if ((strcmp(B, "바위") == 0) && (strcmp(A, "가위") == 0))
+		cout << "B가 이겼습니다.";
+	else if ((strcmp(B, "보") == 0) && (strcmp(A, "바위") == 0))
+		cout << "B가 이겼습니다.";
+	else cout << "비겼습니다.";
+
+	return 0;
+}
+
+//문제5
+class UnitManager //클래스를 아래 함수를 포함해서 만들고 increase() 함수를 호출하는 방법으로
+{
+	void increase(Circle c) //여기서 기본 생성자가 호출됨
+{
+	int r = c.getRadius(); //여기에 c.getRadius() + 1 해도 똑같음
+	c.setRadius(r + 1);
+}
+
+void increase(Circle* pc)
+{
+	int r = pc->getRadius();
+	pc->setRadius(r + 1);
+}
+
+	int sum(int x, int y)
+{
+	int total = x + y;
+	return x + y;
+}
+
+int sum(int* px, int* py) 
+{
+	int total = (*px) + (*py);
+	return total;
+}
+
+int sum2(int& rx, int& ry) //참조에 의한 호출 방법 &rx는 별명임 예시로 유재석의 별명은 메뚜기처럼 메뚜기가 &rx
+{
+	int total = rx + ry;
+	return total;
+}
+
+};
+
+//문제6
+int sum(int x, int y) //값에 의한 호출
+{
+	int total = x + y;
+	return x + y;
+}
+
+int sum(int* px, int* py) //주소에 의한 호출
+{
+	int total = (*px) + (*py);
+	return total;
+}
+
+int sum2(int& rx, int& ry) //참조에 의한 호출 방법 &rx는 별명임 예시로 유재석의 별명은 메뚜기처럼 메뚜기가 &rx
+{
+	int total = rx + ry;
+	return total;
+}
+
+int main()
+{
+	cout << "값에 의한 방식:" << sum(10, 20) << endl; //이것이 값에 의한 전달 방식
+
+	int num1 = 10; //num1의 별명이 rx
+	int num2 = 20; //num2의 별명이 ry가 되는거
+	cout <<"주소에 의한 방식:" << sum(&num1, &num2) << endl; // 주소에 의한 전달 방식
+
+	cout << "참조에 의한 방식:" << sum2(num1, num2) << endl; // 참조에 의한 전달 방식
+
+	return 0;
+}
+
+//문제7
+#include <iostream>
+#include <string>
+using namespace std;
+
+//2차원 평면에서 한 점을 표현하는 클래스 Point 선언
+class Point {
+protected:
+	int x, y;
+public:
+	void set(int x, int y) { this->x = x;  this->y = y; }
+	void showPoint() {
+		cout << "(" << x << "," << y << ")" << endl;
+	}
+};
+
+class ColorPoint : public Point { //2차원 평면에서 컬러점을 표현하는 클래스 colorpoint. point를 상속 받음
+private:
+	string color; //점의 색 표현
+public:
+	void setColor(string color) { this->color = color; }
+	void showColorPoint();
+};
+
+void ColorPoint::showColorPoint() {
+	cout << color << ":";
+	showPoint();
+}
+
+int main() {
+	Point p; //기본 클래스의 객체 생성 (정적 할당)
+	ColorPoint cp; //파생 클래스의 객체 생성
+
+	cp.set(3, 4); //기본 클래스의 멤버 호출
+	cp.setColor("Red"); //파생 클래스의 멤버 호출
+	cp.showColorPoint(); //파생 클래스의 멤버 호출
+
+	//이거 알고 있기!(업캐스팅, 다운캐스팅)
+	ColorPoint* pDer = &cp; //이건 업캐스팅이 아님, 동등하기 때문에!
+	pDer->showColorPoint(); //포인터로 멤버 함수 호출!
+	Point* pBase = &cp; //포인터는 주소만 받을 수 있기 때문에 주소를 담은 것. 업캐스팅 방법 1(교수방법)
+	Point* pBase2 = pDer; //업캐스팅 방법 2(교재방법)
+	((ColorPoint*)pBase)->showPoint(); //이건 다운캐스팅 하여 showPoint 호출하기!
+
+}
