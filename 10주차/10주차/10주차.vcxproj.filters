@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Starcraft">
+      <UniqueIdentifier>{8c4f8693-9e0e-4f33-9f07-7e4ba6506a17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Chapter 6">
+      <UniqueIdentifier>{7365ad9c-13b9-4b51-a4bb-26cadf4e867e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Starcraft\Zerg.cpp">
+      <Filter>Starcraft</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Chapter 6</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>Starcraft</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Starcraft\Zerg.h">
+      <Filter>Starcraft</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>Starcraft</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Polygon">
+      <UniqueIdentifier>{bd948b78-34c1-4c71-9d23-9c2f38584a7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Chapter5">
+      <UniqueIdentifier>{b2e8859d-4486-4ba6-862f-22e78ba3004c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Chapter5Main.cpp">
+      <Filter>Chapter5</Filter>
+    </ClCompile>
+    <ClCompile Include="Polygon\Circle.cpp">
+      <Filter>Polygon</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Polygon\Circle.h">
+      <Filter>Polygon</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
